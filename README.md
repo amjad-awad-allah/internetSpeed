@@ -31,5 +31,4 @@ A premium, high-performance Internet Speed Test application for Android, built w
 - `src/main/kotlin/com/example/internetspeed/ui`: Reusable UI components.
 - `src/main/kotlin/com/example/internetspeed/logic`: Core speed testing logic.
 
----
-Created with ❤️ by Antigravity AI
+
