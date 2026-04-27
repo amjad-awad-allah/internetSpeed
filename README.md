@@ -1,7 +1,6 @@
 # Internet Speed Test (Kotlin & Compose)
 
-![Project Logo](logo.png)
-
+<img src="logo.png" alt="Project Logo" width="150"/>
 A premium, high-performance Internet Speed Test application for Android, built with **Kotlin** and **Jetpack Compose**. Inspired by modern, minimalist designs, this app features smooth animations and a modular architecture.
 
 ## ✨ Features
