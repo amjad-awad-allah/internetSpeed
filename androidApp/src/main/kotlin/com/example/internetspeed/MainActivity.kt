@@ -20,9 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.internetspeed.logic.SpeedTestManager
-import com.example.internetspeed.ui.GaugeStyle
-import com.example.internetspeed.ui.SpeedGauge
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import java.text.SimpleDateFormat
@@ -71,12 +68,6 @@ fun SpeedTestApp(manager: SpeedTestManager) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Gauge with selected style
-        SpeedGauge(speed = speed, style = selectedStyle)
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Style Selector
         Row(
             modifier = Modifier
                 .clip(RoundedCornerShape(50))
