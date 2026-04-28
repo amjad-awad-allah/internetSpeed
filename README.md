@@ -31,7 +31,4 @@ A premium, high-performance Internet Speed Test application for Android, built w
 ## 📂 Project Structure
 - `androidApp`: The main Android application module.
 - `ui`: Modular UI components (Gauge, Chart, Compatibility Cards).
-- `logic`: Core speed testing manager and state handling.
-
----
-Created with ❤️ as a professional-grade Kotlin showcase.
+- `logic`: Core speed testing manager and state handling
