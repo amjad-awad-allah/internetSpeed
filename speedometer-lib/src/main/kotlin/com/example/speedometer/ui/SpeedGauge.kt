@@ -55,6 +55,7 @@ fun SpeedGauge(
         label = "VibrationX"
     )
     val vibrateY by infiniteTransition.animateFloat(
+
         initialValue = -2f,
         targetValue = 2f,
         animationSpec = infiniteRepeatable(animation = tween(40, easing = LinearEasing), repeatMode = RepeatMode.Reverse),

@@ -30,6 +30,7 @@ google-services.json
 
 # Log files
 *.log
+*.hprof
 
 # OS files
 .DS_Store
