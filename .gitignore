@@ -1,21 +1,42 @@
-.gradle
-build
-bin
-.idea
+# Gradle files
+.gradle/
+build/
+
+# Android Studio / IntelliJ
+.idea/
 *.iml
-*.ipr
 *.iws
-out
+*.ipr
+out/
+
+# Android specific
 local.properties
-.DS_Store
+captures/
+.externalNativeBuild
+.cxx/
 *.apk
 *.ap_
 *.dex
 *.class
-bin/
-gen/
-out/
-[Cc]aptures/
-.externalNativeBuild
-.cxx
-cmake/
+
+# Keystore files (NEVER check these in)
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Google Services
+google-services.json
+
+# Log files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Kotlin
+.kotlin/
+
+# VS Code
+.vscode/
