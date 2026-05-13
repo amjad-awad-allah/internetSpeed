@@ -3,6 +3,9 @@ package com.example.internetspeed
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.example.internetspeed.logic.SpeedTestManager
+import com.example.internetspeed.ui.GaugeStyle
+import com.example.internetspeed.ui.SpeedGauge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -74,7 +77,7 @@ fun SpeedTestApp(manager: SpeedTestManager) {
                 .background(Color.White.copy(alpha = 0.05f))
                 .padding(4.dp)
         ) {
-            GaugeStyle.values().forEach { style ->
+            GaugeStyle.entries.forEach { style ->
                 val isSelected = selectedStyle == style
                 Box(
                     modifier = Modifier
@@ -92,6 +95,10 @@ fun SpeedTestApp(manager: SpeedTestManager) {
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(48.dp))
+
+        SpeedGauge(speed = speed, style = selectedStyle)
 
         Spacer(modifier = Modifier.height(48.dp))
 
@@ -156,7 +163,7 @@ fun HistoryItem(result: TestResult) {
             Text(text = "Download Test", color = Color.White, fontWeight = FontWeight.Bold)
         }
         Text(
-            text = "${String.format("%.1f", result.speed)} Mbps",
+            text = "${String.format(Locale.getDefault(), "%.1f", result.speed)} Mbps",
             color = Color(0xFF00F2FE),
             fontSize = 20.sp,
             fontWeight = FontWeight.ExtraBold
