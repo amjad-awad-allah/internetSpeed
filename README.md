@@ -148,7 +148,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 ## 📬 Contact
 - **LinkedIn**: [amjad-awad-allah](https://www.linkedin.com/in/amjad-awad-allah)
 - **Email**: [amjad.awadallah93@gmail.com](mailto:amjad.awadallah93@gmail.com)
-- **Webseit**: [amjad.awadallah93@gmail.com](mailto:amjad.awadallah93@gmail.com)](https://amjadawadallah.com/)
+- **Webseit**:  [amjadawadallah.com](https://amjadawadallah.com/)
 - **GitHub**: [@amjad-awad-allah](https://github.com/amjad-awad-allah)
 
 
