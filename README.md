@@ -146,7 +146,10 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 ---
 
 ## 📬 Contact
+- **LinkedIn**: [amjad-awad-allah](https://www.linkedin.com/in/amjad-awad-allah)
+- **Email**: [amjad.awadallah93@gmail.com](mailto:amjad.awadallah93@gmail.com)
+- **Webseit**: [amjad.awadallah93@gmail.com](mailto:amjad.awadallah93@gmail.com)](https://amjadawadallah.com/)
+- **GitHub**: [@amjad-awad-allah](https://github.com/amjad-awad-allah)
 
-Amjad Awad Allah - [GitHub](https://github.com/amjad-awad-allah)
 
 Project Link: [https://github.com/amjad-awad-allah/internetSpeed](https://github.com/amjad-awad-allah/internetSpeed)
