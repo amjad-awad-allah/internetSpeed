@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "internetSpeed"
 include(":androidApp")
+include(":speedometer-lib")

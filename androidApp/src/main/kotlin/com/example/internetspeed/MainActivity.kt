@@ -3,9 +3,9 @@ package com.example.internetspeed
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.internetspeed.logic.SpeedTestManager
-import com.example.internetspeed.ui.GaugeStyle
-import com.example.internetspeed.ui.SpeedGauge
+import com.example.speedometer.logic.SpeedTestManager
+import com.example.speedometer.ui.GaugeStyle
+import com.example.speedometer.ui.SpeedGauge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

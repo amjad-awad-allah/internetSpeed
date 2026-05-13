@@ -61,6 +61,44 @@ A premium, high-performance Internet Speed Test application for Android, built f
 
 ---
 
+## 📦 Library Usage
+
+You can now use the Speedometer UI and logic as a standalone library in your own projects.
+
+### 1. Add JitPack repository
+In your `settings.gradle.kts` (or root `build.gradle`):
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+### 2. Add dependency
+In your app module's `build.gradle.kts`:
+```kotlin
+dependencies {
+    implementation("com.github.amjad-awad-allah:internetSpeed:1.0.0")
+}
+```
+
+### 3. Implementation Example
+```kotlin
+// In your Composable
+SpeedGauge(
+    speed = 150f, 
+    style = GaugeStyle.MODERN_ARC,
+    primaryColor = Color.Cyan,
+    secondaryColor = Color.Blue,
+    strokeWidth = 20f,       // New: Gauge thickness
+    valueFontSize = 72,      // New: Text size
+    animationDuration = 2000 // New: Smoothness
+)
+```
+
+---
+
 ## 📂 Project Structure
 
 ```text
