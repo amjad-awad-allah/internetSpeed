@@ -85,17 +85,32 @@ dependencies {
 
 ### 3. Implementation Example
 ```kotlin
-// In your Composable
+// Choose from 5 premium styles:
+// MODERN_ARC, GLOWING_DOTS, MINIMALIST_PULSE, NEON_LINES, SHARP_NEEDLE
+
 SpeedGauge(
     speed = 150f, 
-    style = GaugeStyle.MODERN_ARC,
+    style = GaugeStyle.NEON_LINES, // Advanced Style
     primaryColor = Color.Cyan,
     secondaryColor = Color.Blue,
-    strokeWidth = 20f,       // New: Gauge thickness
-    valueFontSize = 72,      // New: Text size
-    animationDuration = 2000 // New: Smoothness
+    strokeWidth = 20f,
+    valueFontSize = 72,
+    // Fully customizable animation!
+    animationSpec = spring(
+        dampingRatio = Spring.DampingRatioMediumBouncy,
+        stiffness = Spring.StiffnessLow
+    )
 )
 ```
+
+---
+
+## ✨ Available Styles
+- **MODERN_ARC**: Sleek gradient arc with smooth progress.
+- **GLOWING_DOTS**: Matrix-style dotted display with reactive highlights.
+- **MINIMALIST_PULSE**: Clean design with a rhythmic outer pulse.
+- **NEON_LINES**: 60 dynamic neon lines that react to speed.
+- **SHARP_NEEDLE**: Classic analog speedometer look with a modern twist.
 
 ---
 
