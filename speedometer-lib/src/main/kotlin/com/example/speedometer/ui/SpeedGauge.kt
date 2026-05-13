@@ -68,6 +68,13 @@ fun SpeedGauge(
         label = "PulseAlpha"
     )
 
+    val lineProgress by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(animation = tween(500, easing = LinearEasing)),
+        label = "SpeedLines"
+    )
+
     // Dynamic Color Shift based on speed percentage
     val currentProgress = (animatedSpeed / maxSpeed).coerceIn(0f, 1f)
     val dynamicColor = lerp(primaryColor, turboColor, currentProgress)
@@ -236,12 +243,6 @@ fun SpeedGauge(
             if (isTesting) {
                 // Draw "Speed Lines" around the gauge
                 val lineCount = 12
-                val lineProgress by infiniteTransition.animateFloat(
-                    initialValue = 0f,
-                    targetValue = 1f,
-                    animationSpec = infiniteRepeatable(animation = tween(500, easing = LinearEasing)),
-                    label = "SpeedLines"
-                )
 
                 for (i in 0 until lineCount) {
                     val angle = (i.toFloat() / lineCount) * 360f
