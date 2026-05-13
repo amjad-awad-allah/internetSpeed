@@ -15,9 +15,11 @@ A premium, high-performance Internet Speed Test application for Android, built f
 
 ## 📸 Demo
 
-| Speedometer Animation | Real-time Chart | Compatibility Analysis |
+| MODERN_ARC| GLOWING_DOTS | MINIMALIST_PULSE |
 | :---: | :---: | :---: |
 | ![Gauge](media/1.gif) | ![Chart](media/2.gif) | ![Analysis](media/3.gif) |
+| NEON_LINES | SHARP_NEEDLE |
+ ![Analysis](media/4.gif) | ![Analysis](media/5.gif) |
 
 ---
 
