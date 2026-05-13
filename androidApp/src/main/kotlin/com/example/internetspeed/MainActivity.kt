@@ -106,7 +106,12 @@ fun SpeedTestApp(manager: SpeedTestManager) {
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            SpeedGauge(speed = speed, style = selectedStyle, modifier = Modifier.size(300.dp))
+            SpeedGauge(
+                speed = speed,
+                isTesting = isTesting,
+                style = selectedStyle,
+                modifier = Modifier.size(300.dp)
+            )
 
             Spacer(modifier = Modifier.height(48.dp))
 

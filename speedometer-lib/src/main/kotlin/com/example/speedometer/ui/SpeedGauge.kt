@@ -29,9 +29,11 @@ enum class GaugeStyle {
 fun SpeedGauge(
     speed: Float,
     maxSpeed: Float = 500f,
+    isTesting: Boolean = false,
     style: GaugeStyle = GaugeStyle.MODERN_ARC,
     primaryColor: Color = Color(0xFF00F2FE),
     secondaryColor: Color = Color(0xFF4FACFE),
+    turboColor: Color = Color(0xFFFF4E50),
     textColor: Color = Color.White,
     strokeWidth: Float = 12f,
     valueFontSize: Int = 54,
@@ -44,8 +46,21 @@ fun SpeedGauge(
         label = "SpeedAnimation"
     )
 
-    // Pulse animation for MINIMALIST_PULSE style
-    val infiniteTransition = rememberInfiniteTransition(label = "Pulse")
+    // Vibration animation for "Testing" state
+    val infiniteTransition = rememberInfiniteTransition(label = "GaugeEffects")
+    val vibrateX by infiniteTransition.animateFloat(
+        initialValue = -2f,
+        targetValue = 2f,
+        animationSpec = infiniteRepeatable(animation = tween(50, easing = LinearEasing), repeatMode = RepeatMode.Reverse),
+        label = "VibrationX"
+    )
+    val vibrateY by infiniteTransition.animateFloat(
+        initialValue = -2f,
+        targetValue = 2f,
+        animationSpec = infiniteRepeatable(animation = tween(40, easing = LinearEasing), repeatMode = RepeatMode.Reverse),
+        label = "VibrationY"
+    )
+
     val pulseAlpha by infiniteTransition.animateFloat(
         initialValue = 0.3f,
         targetValue = 0.8f,
@@ -53,7 +68,21 @@ fun SpeedGauge(
         label = "PulseAlpha"
     )
 
-    Box(modifier = modifier.size(300.dp), contentAlignment = Alignment.Center) {
+    // Dynamic Color Shift based on speed percentage
+    val currentProgress = (animatedSpeed / maxSpeed).coerceIn(0f, 1f)
+    val dynamicColor = lerp(primaryColor, turboColor, currentProgress)
+
+    Box(
+        modifier = modifier
+            .size(300.dp)
+            .graphicsLayer {
+                if (isTesting && animatedSpeed > 10f) {
+                    translationX = vibrateX * (animatedSpeed / maxSpeed) * 5f
+                    translationY = vibrateY * (animatedSpeed / maxSpeed) * 5f
+                }
+            },
+        contentAlignment = Alignment.Center
+    ) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             val center = size.center
             val radius = size.minDimension / 2
@@ -71,7 +100,7 @@ fun SpeedGauge(
                     
                     // Outer Glow
                     drawArc(
-                        brush = Brush.sweepGradient(listOf(primaryColor, secondaryColor)),
+                        brush = Brush.sweepGradient(listOf(dynamicColor, secondaryColor)),
                         startAngle = 135f,
                         sweepAngle = (animatedSpeed / maxSpeed).coerceIn(0f, 1f) * 270f,
                         useCenter = false,
@@ -81,7 +110,7 @@ fun SpeedGauge(
 
                     // Main Arc
                     drawArc(
-                        brush = Brush.sweepGradient(listOf(primaryColor, secondaryColor)),
+                        brush = Brush.sweepGradient(listOf(dynamicColor, secondaryColor)),
                         startAngle = 135f,
                         sweepAngle = (animatedSpeed / maxSpeed).coerceIn(0f, 1f) * 270f,
                         useCenter = false,
@@ -99,7 +128,7 @@ fun SpeedGauge(
                         
                         val isLit = (i.toFloat() / dotCount) <= (animatedSpeed / maxSpeed)
                         drawCircle(
-                            color = if (isLit) primaryColor else Color.Gray.copy(alpha = 0.2f),
+                            color = if (isLit) dynamicColor else Color.Gray.copy(alpha = 0.2f),
                             radius = if (isLit) 6f else 4f,
                             center = Offset(x, y),
                             alpha = if (isLit) 1f else 0.3f
@@ -115,7 +144,7 @@ fun SpeedGauge(
                         style = Stroke(width = 4f)
                     )
                     drawArc(
-                        color = primaryColor,
+                        color = dynamicColor,
                         startAngle = 135f,
                         sweepAngle = (animatedSpeed / maxSpeed).coerceIn(0f, 1f) * 270f,
                         useCenter = false,
@@ -141,7 +170,7 @@ fun SpeedGauge(
                         if (isLit) {
                             // Neon Glow Line
                             drawLine(
-                                color = primaryColor.copy(alpha = 0.3f),
+                                color = dynamicColor.copy(alpha = 0.3f),
                                 start = Offset(startX, startY),
                                 end = Offset(endX, endY),
                                 strokeWidth = 10f,
@@ -150,7 +179,7 @@ fun SpeedGauge(
                         }
 
                         drawLine(
-                            color = if (isLit) primaryColor else Color.Gray.copy(alpha = 0.2f),
+                            color = if (isLit) dynamicColor else Color.Gray.copy(alpha = 0.2f),
                             start = Offset(startX, startY),
                             end = Offset(endX, endY),
                             strokeWidth = if (isLit) 4f else 2f,
@@ -173,7 +202,7 @@ fun SpeedGauge(
                     val trailAngle = 135f + ((animatedSpeed * 0.95f) / maxSpeed).coerceIn(0f, 1f) * 270f
                     val trailRad = Math.toRadians(trailAngle.toDouble())
                     drawLine(
-                        color = primaryColor.copy(alpha = 0.3f),
+                        color = dynamicColor.copy(alpha = 0.3f),
                         start = center,
                         end = Offset(
                             center.x + (radius - 15) * cos(trailRad).toFloat(),
@@ -192,14 +221,47 @@ fun SpeedGauge(
                     )
                     
                     drawLine(
-                        brush = Brush.linearGradient(listOf(primaryColor, secondaryColor)),
+                        brush = Brush.linearGradient(listOf(dynamicColor, secondaryColor)),
                         start = center,
                         end = needleEnd,
                         strokeWidth = 6f,
                         cap = StrokeCap.Round
                     )
                     
-                    drawCircle(color = primaryColor, radius = 12f, center = center)
+                    drawCircle(color = dynamicColor, radius = 12f, center = center)
+                }
+            }
+
+            // --- Testing Phase Special Effects ---
+            if (isTesting) {
+                // Draw "Speed Lines" around the gauge
+                val lineCount = 12
+                val lineProgress by infiniteTransition.animateFloat(
+                    initialValue = 0f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(animation = tween(500, easing = LinearEasing)),
+                    label = "SpeedLines"
+                )
+
+                for (i in 0 until lineCount) {
+                    val angle = (i.toFloat() / lineCount) * 360f
+                    val rad = Math.toRadians(angle.toDouble())
+                    val startDist = radius + 20 + (lineProgress * 30)
+                    val endDist = startDist + 20
+                    
+                    drawLine(
+                        color = dynamicColor.copy(alpha = (1f - lineProgress) * 0.5f),
+                        start = Offset(
+                            center.x + startDist * cos(rad).toFloat(),
+                            center.y + startDist * sin(rad).toFloat()
+                        ),
+                        end = Offset(
+                            center.x + endDist * cos(rad).toFloat(),
+                            center.y + endDist * sin(rad).toFloat()
+                        ),
+                        strokeWidth = 3f,
+                        cap = StrokeCap.Round
+                    )
                 }
             }
         }
